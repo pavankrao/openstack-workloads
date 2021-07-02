@@ -10,26 +10,27 @@ flavors:
     ram: 1024
     disk: 1
     vcpus: 1
+    extra_specs:
+     "null": "null"
 
 images:
-- name: rhel7.6
-  url: https://url.corp.redhat.com/rhel-guest-image-7-6-210-x86-64-qcow2
+  - name: rhel-guest-image-8.1-263.x86_64.qcow2
+    url: http://download.devel.redhat.com/rhel-8/rel-eng/RHEL-8/latest-RHEL-8.1.0/compose/BaseOS/x86_64/images/rhel-guest-image-8.1-263.x86_64.qcow2
 
-- name: cirros
-  url: https://path/to/cirros/image
+  - name: cirros-0.4.0-x86_64-disk.img
+    url: http://rhos-qe-mirror-tlv.usersys.redhat.com/images/cirros-0.4.0-x86_64-disk.img
 
 workloads:
   - name: workload1
     flavor: vcpu_pinning
     image: cirros
-    metadata: migrationaction=coldmigrate
+    metadata: migrationaction=cold-migrate
 
   - name: workload2
     flavor: standard
-    image: rhel78
+    image: rhel8.1
 
   - name: workload3
     flavor: vcpu_pinning
     image: cirros
-    metadata: migrationaction=nomigrate
-    
+    metadata: migrationaction=no-migrate
